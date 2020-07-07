@@ -1,0 +1,90 @@
+﻿<Window x:Class="quick_formatter_wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:quick_formatter_wpf.Helpers"
+        mc:Ignorable="d"
+        Title="Quick Formatter" MinHeight="450" MinWidth="900"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
+            <StackPanel.Resources>
+                <Style TargetType="ComboBox">
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <ComboBox x:Name="SelectedFormatterComboBox" ItemsSource="{Binding Path=AvailableFormatters}" SelectedItem="{Binding Path=SelectedFormatter}"></ComboBox>
+            <Button Content="Format" x:Name="FormatButton" 
+                    helpers:ButtonHelper.CommandParameter="{Binding InputText}"
+                    Command="{Binding FormatCommand}">
+            </Button>
+        </StackPanel>
+        <Grid IsSharedSizeScope="True" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="5"></Setter>
+                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                    <Setter Property="AcceptsReturn" Value="True"/>
+                    <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
+                    <Setter Property="MinHeight" Value="300"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="MaxWidth" Value="50"></Setter>
+                </Style>
+                <Style TargetType="Label" x:Key="TextBoxLabelStyle">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="Grid" x:Key="InputOutputColumnStyle">
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid Grid.Column="0" Style="{StaticResource InputOutputColumnStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition SharedSizeGroup="Labels" Height="Auto"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition SharedSizeGroup="Controls" Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Input" Style="{StaticResource TextBoxLabelStyle}" Grid.Row="0"></Label>
+                <TextBox x:Name="InputTextBox" TextChanged="InputTextBox_OnTextChanged" Grid.Row="1"></TextBox>
+                <Button x:Name="InputTextCopyButton" Content="Copy" Grid.Row="2"
+                        helpers:ButtonHelper.CommandParameter="{Binding Path=InputText}"
+                        Command="{Binding Path=CopyToClipCommand}"></Button>
+            </Grid>
+            <Grid Grid.Column="1" Style="{StaticResource InputOutputColumnStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition SharedSizeGroup="Labels" Height="Auto"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition SharedSizeGroup="Controls" Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Output" Style="{StaticResource TextBoxLabelStyle}" Grid.Row="0"></Label>
+                <ScrollViewer Grid.Row="1">
+                    <TextBox x:Name="OutputTextBox"  Grid.Row="1"
+                             Text="{Binding Path=OutputText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"></TextBox>
+
+                </ScrollViewer>
+                <Button x:Name="OutputTextCopyButton" Content="Copy"  Grid.Row="2"
+                        helpers:ButtonHelper.CommandParameter="{Binding Path=OutputText}"
+                        Command="{Binding Path=CopyToClipCommand}"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
