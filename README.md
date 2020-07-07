@@ -4,7 +4,7 @@ Basic text formatter written in C# using Windows Presentation Foundation graphic
 
 ## How it looks like?
 
-![Look and feel](docs\screenshot1.png?raw=true)
+![Look and feel](https://raw.githubusercontent.com/src-ad/quick-formatter-wpf/master/docs/screenshot1.png?raw=true)
 
 ## Supported formats 
 
