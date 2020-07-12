@@ -9,87 +9,88 @@
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
             <StackPanel.Resources>
                 <Style TargetType="ComboBox">
-                    <Setter Property="Margin" Value="10"></Setter>
+                    <Setter Property="Margin" Value="10" />
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="Margin" Value="10"></Setter>
+                    <Setter Property="Margin" Value="10" />
                 </Style>
             </StackPanel.Resources>
-            <ComboBox x:Name="SelectedFormatterComboBox" ItemsSource="{Binding Path=AvailableFormatters}" SelectedItem="{Binding Path=SelectedFormatter}"></ComboBox>
-            <Button Content="Format" x:Name="FormatButton" 
+            <ComboBox x:Name="SelectedFormatterComboBox" ItemsSource="{Binding Path=AvailableFormatters}"
+                      SelectedItem="{Binding Path=SelectedFormatter}" />
+            <Button Content="Format" x:Name="FormatButton"
                     helpers:ButtonHelper.CommandParameter="{Binding InputText}"
-                    Command="{Binding FormatCommand}">
-            </Button>
+                    Command="{Binding FormatCommand}" />
         </StackPanel>
         <Grid IsSharedSizeScope="True" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.Resources>
                 <Style TargetType="StackPanel">
-                    <Setter Property="Margin" Value="10"></Setter>
+                    <Setter Property="Margin" Value="10" />
                 </Style>
                 <Style TargetType="TextBox">
-                    <Setter Property="Margin" Value="5"></Setter>
-                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
-                    <Setter Property="AcceptsReturn" Value="True"/>
-                    <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
-                    <Setter Property="MinHeight" Value="300"></Setter>
-                    <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                    <Setter Property="AcceptsReturn" Value="True" />
+                    <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+                    <Setter Property="MinHeight" Value="300" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="MaxWidth" Value="50"></Setter>
+                    <Setter Property="MaxWidth" Value="50" />
                 </Style>
                 <Style TargetType="Label" x:Key="TextBoxLabelStyle">
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center" />
                 </Style>
                 <Style TargetType="Grid" x:Key="InputOutputColumnStyle">
-                    <Setter Property="Margin" Value="10"></Setter>
+                    <Setter Property="Margin" Value="10" />
                 </Style>
             </Grid.Resources>
             <Grid Grid.Column="0" Style="{StaticResource InputOutputColumnStyle}">
                 <Grid.RowDefinitions>
-                    <RowDefinition SharedSizeGroup="Labels" Height="Auto"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition SharedSizeGroup="Controls" Height="Auto"></RowDefinition>
+                    <RowDefinition SharedSizeGroup="Labels" Height="Auto" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition SharedSizeGroup="Controls" Height="Auto" />
                 </Grid.RowDefinitions>
-                <Label Content="Input" Style="{StaticResource TextBoxLabelStyle}" Grid.Row="0"></Label>
-                <TextBox x:Name="InputTextBox" TextChanged="InputTextBox_OnTextChanged" Grid.Row="1"></TextBox>
+                <Label Content="Input" Style="{StaticResource TextBoxLabelStyle}" Grid.Row="0" />
+                <TextBox x:Name="InputTextBox" TextChanged="InputTextBox_OnTextChanged" Grid.Row="1" />
                 <Button x:Name="InputTextCopyButton" Content="Copy" Grid.Row="2"
                         helpers:ButtonHelper.CommandParameter="{Binding Path=InputText}"
-                        Command="{Binding Path=CopyToClipCommand}"></Button>
+                        Command="{Binding Path=CopyToClipCommand}" />
             </Grid>
             <Grid Grid.Column="1" Style="{StaticResource InputOutputColumnStyle}">
                 <Grid.RowDefinitions>
-                    <RowDefinition SharedSizeGroup="Labels" Height="Auto"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition SharedSizeGroup="Controls" Height="Auto"></RowDefinition>
+                    <RowDefinition SharedSizeGroup="Labels" Height="Auto" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition SharedSizeGroup="Controls" Height="Auto" />
                 </Grid.RowDefinitions>
-                <Label Content="Output" Style="{StaticResource TextBoxLabelStyle}" Grid.Row="0"></Label>
+                <Label Content="Output" Style="{StaticResource TextBoxLabelStyle}" Grid.Row="0" />
                 <ScrollViewer Grid.Row="1">
-                    <TextBox x:Name="OutputTextBox"  Grid.Row="1"
-                             Text="{Binding Path=OutputText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"></TextBox>
+                    <TextBox x:Name="OutputTextBox" Grid.Row="1"
+                             Text="{Binding Path=OutputText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="False" />
 
                 </ScrollViewer>
-                <Button x:Name="OutputTextCopyButton" Content="Copy"  Grid.Row="2"
+                <Button x:Name="OutputTextCopyButton" Content="Copy" Grid.Row="2"
                         helpers:ButtonHelper.CommandParameter="{Binding Path=OutputText}"
-                        Command="{Binding Path=CopyToClipCommand}"></Button>
+                        Command="{Binding Path=CopyToClipCommand}" />
             </Grid>
         </Grid>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
-                <TextBlock Text="{Binding StatusBarText, Mode=OneWay}"></TextBlock>
+                <TextBlock Text="{Binding StatusBarText, Mode=OneWay}" />
             </StatusBarItem>
         </StatusBar>
     </Grid>

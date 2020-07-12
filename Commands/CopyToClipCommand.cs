@@ -16,10 +16,7 @@ namespace quick_formatter_wpf.Commands
             _receiver = receiver;
             if (_receiver is INotifyPropertyChanged propertyChanged)
             {
-                propertyChanged.PropertyChanged += (sender, args) =>
-                {
-                    CanExecuteChanged?.Invoke(this, args);
-                };
+                propertyChanged.PropertyChanged += (sender, args) => { CanExecuteChanged?.Invoke(this, args); };
             }
         }
 
@@ -34,6 +31,7 @@ namespace quick_formatter_wpf.Commands
             {
                 return;
             }
+
             Clipboard.SetText(text);
         }
 

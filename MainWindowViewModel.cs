@@ -13,12 +13,14 @@ namespace quick_formatter_wpf
         public List<string> AvailableFormatters { get; set; }
         public ICommand FormatCommand { get; set; }
         public ICommand CopyToClipCommand { get; set; }
+
         private string _inputText;
 
         public string InputText
         {
             get => _inputText;
-            set {
+            set
+            {
                 _inputText = value;
                 OnPropertyChanged();
             }
@@ -39,7 +41,16 @@ namespace quick_formatter_wpf
         public string SelectedFormatter { get; set; }
 
         private string _statusBarText;
-        public string StatusBarText { get => _statusBarText; set { _statusBarText = value; OnPropertyChanged(); } }
+
+        public string StatusBarText
+        {
+            get => _statusBarText;
+            set
+            {
+                _statusBarText = value;
+                OnPropertyChanged();
+            }
+        }
 
         public MainWindowViewModel()
         {
@@ -60,6 +71,7 @@ namespace quick_formatter_wpf
             {
                 UpdateStatusBarText();
             }
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
